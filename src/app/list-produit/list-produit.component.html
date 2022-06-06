@@ -1,21 +1,35 @@
 <div *ngIf="products; else vide">
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
 
-    <table>
-        <tr>
-        <th>id</th>
-        <th>nom</th>
-        <th>prix</th>
-        <th>quantité</th>
-        <th>photo</th>
-    </tr>
-    <tr *ngFor="let a of products">
-        <td>{{a.id}}</td>
-        <td>{{a.nom}}</td>
-        <td>{{a.prix}}</td>
-        <td>{{a.quantite}}</td>
-        <td><img [src]="a.photo" width="50" height="50"/></td>
-    </tr>
-</table>
+                <input type="text" [(ngModel)]="searchQuery" class="form-control" style="margin: 5px;" />
+                <table style="margin: 5px;" class="table">
+                    <tr>
+                        <th>id</th>
+                        <th>nom</th>
+                        <th>prix</th>
+                        <th>quantité</th>
+                        <th><button class="btn btn-outline-primary" (click)="switchVisibility()">{{visible?"Visible":"Not
+                                Visible"}}</button></th>
+                    </tr>
+                    <tr *ngFor="let a of products" [ngStyle]="{color: getColor(a.quantite)}">
+                        <td>{{a.id}}</td>
+                        <td>{{a.nom.toUpperCase()}}</td>
+                        <td>{{a.prix | number: '5.2-2'}}</td>
+                        <!--<td>{{a.prix.toFixed(2)}} TND</td>-->
+                        <!--<td>{{a.prix}}</td>-->
+                        <td>{{a.quantite}}</td>
+                        <td>
+                            <div *ngIf="visible"> <img [src]="a.photo" width="50" height="50" /></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
 
 </div>
 

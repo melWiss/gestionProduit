@@ -9,7 +9,7 @@ import { Produit } from '../model/produit';
 export class ListProduitComponent implements OnInit {
 
   // products?: Array<Produit>;
-    products: Array<Produit> = [
+  _products: Array<Produit> = [
     {
       id: 1,
       nom: "PC PORTABLE",
@@ -21,7 +21,7 @@ export class ListProduitComponent implements OnInit {
       id: 2,
       nom: "PC Desktop",
       prix: 1200,
-      quantite: 7,
+      quantite: 0,
       photo: "./assets/images/gamer.jpg",
     },
     {
@@ -33,9 +33,28 @@ export class ListProduitComponent implements OnInit {
     },
   ];
 
+  products: Array<Produit> = [];
+
+  visible: boolean = true;
+
+  switchVisibility() {
+    this.visible = !this.visible;
+  }
+
+  getColor(qte: number) {
+    return qte == 0 ? "red" : "black";
+  }
+
+  _searchQuery?: String;
+  set searchQuery(str: String) {
+    this._searchQuery = str.toUpperCase();
+    this.products = this._products.filter((v)=>v.nom.toUpperCase().includes(this._searchQuery as string));
+  }
+
   constructor() { }
 
   ngOnInit(): void {
+    this.products = [...this._products];
   }
 
 }

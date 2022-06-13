@@ -5,11 +5,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListProduitComponent } from './list-produit/list-produit.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListProduitComponent
+    ListProduitComponent,
+    ProductDetailsComponent,
+    HomePageComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,

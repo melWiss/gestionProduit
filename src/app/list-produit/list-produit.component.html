@@ -1,8 +1,7 @@
 <div *ngIf="products; else vide">
     <div class="container">
         <div class="row">
-            <div class="col"></div>
-            <div class="col">
+            <div class="col-12">
 
                 <input type="text" [(ngModel)]="searchQuery" class="form-control" style="margin: 5px;" />
                 <table style="margin: 5px;" class="table">
@@ -16,18 +15,17 @@
                     </tr>
                     <tr *ngFor="let a of products" [ngStyle]="{color: getColor(a.quantite)}">
                         <td>{{a.id}}</td>
-                        <td>{{a.nom.toUpperCase()}}</td>
+                        <td><a routerLink="/products/{{a.id}}">{{a.nom.toUpperCase()}}</a></td>
                         <td>{{a.prix | number: '5.2-2'}}</td>
                         <!--<td>{{a.prix.toFixed(2)}} TND</td>-->
                         <!--<td>{{a.prix}}</td>-->
                         <td>{{a.quantite}}</td>
-                        <td>
+                        <td style="height: 50; width: 50">
                             <div *ngIf="visible"> <img [src]="a.photo" width="50" height="50" /></div>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div class="col"></div>
         </div>
     </div>
 

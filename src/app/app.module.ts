@@ -8,6 +8,7 @@ import { ListProduitComponent } from './list-produit/list-produit.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

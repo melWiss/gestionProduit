@@ -21,7 +21,7 @@
                         <!--<td>{{a.prix}}</td>-->
                         <td>{{a.quantite}}</td>
                         <td style="height: 50; width: 50">
-                            <div *ngIf="visible"> <img [src]="a.photo" width="50" height="50" /></div>
+                            <div *ngIf="visible"> <img [src]="imageBaseUrl+''+a.id" width="50" height="50" /></div>
                         </td>
                     </tr>
                 </table>

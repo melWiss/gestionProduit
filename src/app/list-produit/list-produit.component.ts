@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Produit } from '../model/produit';
+import { ProduitService } from '../services/produit.service';
 
 @Component({
   selector: 'app-list-produit',
@@ -8,30 +9,9 @@ import { Produit } from '../model/produit';
 })
 export class ListProduitComponent implements OnInit {
 
-  // products?: Array<Produit>;
-  _products: Array<Produit> = [
-    {
-      id: 1,
-      nom: "PC PORTABLE",
-      prix: 1500,
-      quantite: 5,
-      photo: "./assets/images/asus.jpeg",
-    },
-    {
-      id: 2,
-      nom: "PC Desktop",
-      prix: 1200,
-      quantite: 0,
-      photo: "./assets/images/gamer.jpg",
-    },
-    {
-      id: 3,
-      nom: "PS5",
-      prix: 1800,
-      quantite: 2,
-      photo: "./assets/images/ps5.webp",
-    },
-  ];
+  imageBaseUrl:String = "http://localhost:8080/api/image/";
+
+  _products?: Array<Produit>;
 
   products: Array<Produit> = [];
 
@@ -48,13 +28,16 @@ export class ListProduitComponent implements OnInit {
   _searchQuery?: String;
   set searchQuery(str: String) {
     this._searchQuery = str.toUpperCase();
-    this.products = this._products.filter((v)=>v.nom.toUpperCase().includes(this._searchQuery as string));
+    this.products = this._products?.filter((v)=>v.nom.toUpperCase().includes(this._searchQuery as string))??[];
   }
 
-  constructor() { }
+  constructor(private produitService:ProduitService) { }
 
   ngOnInit(): void {
-    this.products = [...this._products];
+    this.produitService.getProduits().subscribe(data => {
+      this._products = data;
+      this.products = data;
+    });
   }
 
 }
